@@ -13,7 +13,8 @@ function ENT:Initialize()
 		self:SetMoveType(MOVETYPE_VPHYSICS)
 		self:SetUseType(SIMPLE_USE)
 		self:SetPersistent(true)
-
+		self:SetNetworkedInt("condition", math.random(2, 7))
+		
 		local physObj = self:GetPhysicsObject()
 
 		if (IsValid(physObj)) then
@@ -22,7 +23,7 @@ function ENT:Initialize()
 		end
 	end
 end
-condition = 5	
+
 function ENT:OnTakeDamage(dmg) -- Items adds to attacker's inventory, while hitting with certain weapon class
 	local player = dmg:GetAttacker()
 	local skill = player:getChar():getAttrib("mng")
@@ -31,10 +32,10 @@ function ENT:OnTakeDamage(dmg) -- Items adds to attacker's inventory, while hitt
 	end
 	local chance = math.random(1, 100) + skill/2
 	if( player:IsPlayer() and IsValid(player:GetActiveWeapon()) and (player:GetActiveWeapon():GetClass() == "YOUR_WEAPON_CLASS_HERE")) then
-		if (condition == 0) then
+		if (self:GetNetworkedInt("condition") == 0) then
 			player:notify("Resource Drained.")
 			timer.Simple(600, function()
-				condition = 5
+				self:SetNetworkedInt("condition", math.random(2, 7))
 			end)
 		else
 			if chance >= 50 and chance < 75 then
@@ -47,12 +48,8 @@ function ENT:OnTakeDamage(dmg) -- Items adds to attacker's inventory, while hitt
 				player:getChar():getInv():add("stone2")
 				player:notify("You get some ore.")
 			end
-			condition = condition - 1
+			self:SetNetworkedInt("condition", self:SetNetworkedInt("condition") - 1)
 			player:getChar():updateAttrib("mng", 0.05)
 		end
 	end
-end
-
-function ENT:OnRemove()
-	condition = 5	
 end
