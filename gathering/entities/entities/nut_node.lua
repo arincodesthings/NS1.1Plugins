@@ -48,7 +48,7 @@ function ENT:OnTakeDamage(dmg) -- Items adds to attacker's inventory, while hitt
 				player:getChar():getInv():add("stone2")
 				player:notify("You get some ore.")
 			end
-			self:SetNetworkedInt("condition", self:SetNetworkedInt("condition") - 1)
+			self:SetNetworkedInt("condition", self:GetNetworkedInt("condition") - 1)
 			player:getChar():updateAttrib("mng", 0.05)
 		end
 	end
