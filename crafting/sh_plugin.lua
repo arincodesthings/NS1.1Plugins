@@ -26,7 +26,7 @@ nut.lang.Add("icat_material", "Materials")
 nut.lang.Add("craft_menu_tip1", "You can craft items by clicking on their icons.")
 nut.lang.Add("craft_menu_tip2", "Book icon .")
 
-nut.lang.Add("crft_text", "Creating %s\n%s\n\Requires:\n")
+nut.lang.Add("crft_text", "Creating %s\n%s\n\nRequires:\n")
 nut.lang.Add("crft_text_att", "Req. attribs:\n%s%s")
 
 RECIPES = {}
@@ -78,9 +78,6 @@ function RECIPES:Register( tbl )
 end
 end
 nut.util.Include("sh_recipies.lua")
-nut.util.Include("sh_recipies_carpentery.lua")
-nut.util.Include("sh_recipies_smithing.lua")
-nut.util.Include("sh_recipies_leatherworking.lua")
 nut.util.Include("sh_menu.lua")
 
 
