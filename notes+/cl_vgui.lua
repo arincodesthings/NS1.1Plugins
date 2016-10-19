@@ -46,21 +46,7 @@ function PANEL:allowEdit(bool)
 end
 
 function PANEL:setText(text)
-	self.contents:SetValue(text)
-end
-
-function PANEL:placed(bool, bool1)
-	if (bool == true) and (bool1 == true) then
-		self.pickup = self.controls:Add("DButton")
-		self.pickup:Dock(RIGHT)
-		self.pickup:SetDisabled(false)
-		self.pickup:SetText("Сорвать")
-		
-		self.pickup.DoClick = function(this)
-			netstream.Start("notePickUp", self.id)
-			self:Close()
-		end
-	end
+	self.contents:SetText(text)
 end
 
 vgui.Register("noteRead", PANEL, "DFrame")
