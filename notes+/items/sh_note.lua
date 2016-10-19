@@ -31,12 +31,9 @@ ITEM.functions.Write = { -- sorry, for name order.
 	elseif (item:getData("owner")) and (item:getData("owner") ~= item.player:getChar():getID()) then
 		canwrite = false
 	end
-	if WRITINGDATA[item:getID()] == nil then
-		WRITINGDATA[item:getID()] = ""
-	end
 	local client = item.player
-		netstream.Start(client, "receiveNote", item:getID(), WRITINGDATA[item:getID()], canwrite, 1)	
-		client:EmitSound("hgn/crussaria/items/itm_book_open.wav") -- Изменить звук.
+		netstream.Start(client, "receiveNote", item:getID(), item:getData("text", ""), canwrite)	
+		client:EmitSound("hgn/crussaria/items/itm_book_open.wav")
 		return false
 	end,
 	onCanRun = function(item)
