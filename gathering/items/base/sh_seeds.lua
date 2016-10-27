@@ -16,7 +16,7 @@ ITEM.functions.use = {
 		local client = item.player
 		local trace = client:GetEyeTraceNoCursor()
 		if (trace.HitPos:Distance( client:GetShootPos() ) <= 192) then
-			if (trace.MatType == 68) then
+			if (trace.MatType == 68) then -- Player can plant seeds only on dirt.
 				local seed = ents.Create("nut_culture")
 				seed:SetPos(trace.HitPos + trace.HitNormal)
 				seed.BadGathering = item.BadGathering
@@ -26,7 +26,7 @@ ITEM.functions.use = {
 				seed:SetModel(item.PlantModel)
 				client:notify("Вы успешно посадили семена")
 				
-				timer.Simple(math.random(300, 600), function()
+				timer.Simple(math.random(300, 600), function() -- Growing time.
 					seed:SetModelScale(0.75)
 					seed:SetNetworkedBool("Usable", true)
 				end)
