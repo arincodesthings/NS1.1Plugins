@@ -1,0 +1,9 @@
+ITEM.name = "Example seed"
+ITEM.model = "models/props_lab/box01a.mdl"
+ITEM.width = 1
+ITEM.height = 1
+ITEM.desc = "Test for testing."
+ITEM.PlantModel = "models/props_lab/box01a.mdl" -- Must be a prop
+ITEM.BadGathering = {"seed_example"} -- chance <40. Chances can be edited in entities/nut_culture.lua
+ITEM.CommonGathering = {"seed_example","example_plant"} -- chance >40 and <80
+ITEM.MasterGathering = {"seed_example","seed_example","example_plant"} -- chance > 80
