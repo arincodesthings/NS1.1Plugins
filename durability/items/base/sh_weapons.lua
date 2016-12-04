@@ -221,6 +221,9 @@ hook.Add("PlayerDeath", "nutStripClip", function(client)
 		if (v.isWeapon and v:getData("equip")) then
 			v:setData("ammo", nil)
 			v:setData("equip", nil)
+			if (v.pacData) then
+				v.player:getChar():removePart(v.uniqueID)
+			end
 		end
 	end
 end)
