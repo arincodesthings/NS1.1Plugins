@@ -73,6 +73,15 @@ function playerMeta:IsAdmin()
 	return PLUGIN:IsAllowed(self, "admin") or self:ModIsAdmin()
 end
 
+function PLUGIN:SaveData()
+	local data = {}
+
+	data.ranks = self.ranks
+	data.users = self.users
+	data.bans = self.bans
+	self:setData(data)
+end
+
 function PLUGIN:LoadData()
 	local data = self:getData()
 
